@@ -1,216 +1,64 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Lead Automation Agent</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <main class="app-shell">
-      <aside class="sidebar">
-        <div>
-          <p class="eyebrow">Free local agent</p>
-          <h1>Lead Automation</h1>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdProduction | Pre-Production Excellence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #050505; color: white; }
+        .premium-gradient { background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%); border: 1px solid #333; }
+        .accent-gold { color: #D4AF37; }
+        .bg-gold { background-color: #D4AF37; }
+        .card-blur { backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.03); }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="p-8 flex justify-between items-center max-w-7xl mx-auto">
+        <h1 class="text-2xl font-extrabold tracking-tighter">AD<span class="accent-gold">PRO</span></h1>
+        <div class="space-x-8 text-sm font-medium opacity-70">
+            <a href="#" class="hover:opacity-100 transition">Projects</a>
+            <a href="#" class="hover:opacity-100 transition">Workflow</a>
+            <a href="#" class="hover:opacity-100 transition">AI Consultant</a>
+            <button class="bg-white text-black px-6 py-2 rounded-full font-bold">Contact Us</button>
         </div>
-        <nav aria-label="Workspace">
-          <a href="#finder">Finder</a>
-          <a href="#pipeline">Pipeline</a>
-          <a href="#outreach">Outreach</a>
-          <a href="#google">Google</a>
-        </nav>
-        <div class="status-panel">
-          <span class="status-dot"></span>
-          <div>
-            <strong id="agentStatus">Ready</strong>
-            <small>Works in this browser. Google sync is optional.</small>
-          </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="max-w-7xl mx-auto px-8 py-20 text-center">
+        <span class="text-xs uppercase tracking-[0.3em] opacity-50 mb-4 block">Premium Pre-Production Services</span>
+        <h2 class="text-6xl md:text-8xl font-extrabold leading-tight mb-8">Crafting Visual <br><span class="accent-gold">Masterpieces.</span></h2>
+        <p class="max-w-2xl mx-auto text-lg opacity-60 mb-12">SEO Optimized, AI Driven, and Workflow focused. We handle the groundwork while you focus on the vision.</p>
+    </header>
+
+    <!-- Workflow Display (Controlled via Sheet) -->
+    <section class="max-w-7xl mx-auto px-8 py-20">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="premium-gradient p-10 rounded-3xl card-blur">
+                <div class="text-4xl mb-6">🖋️</div>
+                <h3 class="text-xl font-bold mb-4">Smart Scripting</h3>
+                <p class="opacity-50 text-sm leading-relaxed">Automated workflow updates from your Google Sheet for every draft revision.</p>
+            </div>
+            <div class="premium-gradient p-10 rounded-3xl card-blur">
+                <div class="text-4xl mb-6">🤖</div>
+                <h3 class="text-xl font-bold mb-4">AI Agent Support</h3>
+                <p class="opacity-50 text-sm leading-relaxed">Real-time project updates and client support via integrated AI agents.</p>
+            </div>
+            <div class="premium-gradient p-10 rounded-3xl card-blur border-gold">
+                <div class="text-4xl mb-6">📈</div>
+                <h3 class="text-xl font-bold mb-4">SEO Optimization</h3>
+                <p class="opacity-50 text-sm leading-relaxed">Dynamic keywords and meta-tags controlled directly from your backend sheet.</p>
+            </div>
         </div>
-      </aside>
+    </section>
 
-      <section class="workspace">
-        <header class="topbar">
-          <div>
-            <p class="eyebrow">Lead machine</p>
-            <h2>Find, score, draft, and sync leads</h2>
-          </div>
-          <div class="topbar-actions">
-            <button class="ghost" id="importButton" type="button">Import CSV</button>
-            <button id="exportButton" type="button">Export CSV</button>
-            <input id="csvInput" type="file" accept=".csv,text/csv" hidden />
-          </div>
-        </header>
+    <!-- Project Footer -->
+    <footer class="border-t border-white/10 mt-20 p-12 text-center">
+        <p class="text-xs opacity-30">© 2026 AdPro Pre-Production. Managed via Google Sheets Backend.</p>
+    </footer>
 
-        <section class="band" id="finder">
-          <div class="section-title">
-            <div>
-              <p class="eyebrow">Finder</p>
-              <h3>Build a free lead list</h3>
-            </div>
-            <button id="generateButton" type="button">Generate Plan</button>
-          </div>
-
-          <form class="finder-grid" id="leadForm">
-            <label>
-              Business type
-              <input id="industry" value="real estate agents" autocomplete="off" />
-            </label>
-            <label>
-              City or area
-              <input id="location" value="Mumbai" autocomplete="off" />
-            </label>
-            <label>
-              Your offer
-              <input id="offer" value="AI follow-up automation" autocomplete="off" />
-            </label>
-            <label>
-              Ideal signal
-              <select id="signal">
-                <option value="has website">Has website</option>
-                <option value="running ads">Running ads</option>
-                <option value="active social media">Active social media</option>
-                <option value="poor response speed">Poor response speed</option>
-              </select>
-            </label>
-          </form>
-
-          <div class="search-strip" id="searchStrip" aria-live="polite"></div>
-        </section>
-
-        <section class="band" id="pipeline">
-          <div class="section-title">
-            <div>
-              <p class="eyebrow">Pipeline</p>
-              <h3>Leads and next actions</h3>
-            </div>
-            <button class="ghost" id="addLeadButton" type="button">Add Lead</button>
-          </div>
-
-          <div class="metrics" aria-label="Pipeline summary">
-            <div>
-              <span id="metricLeads">0</span>
-              <small>Total leads</small>
-            </div>
-            <div>
-              <span id="metricHot">0</span>
-              <small>Hot leads</small>
-            </div>
-            <div>
-              <span id="metricDrafts">0</span>
-              <small>Drafts ready</small>
-            </div>
-          </div>
-
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Company</th>
-                  <th>Contact</th>
-                  <th>Score</th>
-                  <th>Status</th>
-                  <th>Next step</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody id="leadTable"></tbody>
-            </table>
-          </div>
-        </section>
-
-        <section class="band split" id="outreach">
-          <div>
-            <div class="section-title compact">
-              <div>
-                <p class="eyebrow">Outreach</p>
-                <h3>Email draft</h3>
-              </div>
-              <button id="copyDraftButton" type="button">Copy</button>
-            </div>
-            <label class="wide-label">
-              Selected lead
-              <select id="selectedLead"></select>
-            </label>
-            <textarea id="emailDraft" rows="12" spellcheck="true"></textarea>
-          </div>
-
-          <div>
-            <div class="section-title compact">
-              <div>
-                <p class="eyebrow">Agent</p>
-                <h3>Automation queue</h3>
-              </div>
-              <button class="ghost" id="runAgentButton" type="button">Run</button>
-            </div>
-            <ol class="queue" id="agentQueue"></ol>
-          </div>
-        </section>
-
-        <section class="band" id="google">
-          <div class="section-title">
-            <div>
-              <p class="eyebrow">Google connector</p>
-              <h3>Sheets, Gmail, Calendar, and Drive</h3>
-            </div>
-            <button id="saveConnectorButton" type="button">Save Connector</button>
-          </div>
-
-          <div class="google-grid">
-            <label>
-              Apps Script Web App URL
-              <input id="scriptUrl" placeholder="Paste Google Apps Script URL here" />
-            </label>
-            <label>
-              Follow-up date
-              <input id="followUpDate" type="date" />
-            </label>
-          </div>
-          <div class="button-row">
-            <button class="ghost" id="testGoogleButton" type="button">Test</button>
-            <button class="ghost" id="syncSheetsButton" type="button">Sync Sheets</button>
-            <button class="ghost" id="createDraftButton" type="button">Create Gmail Draft</button>
-            <button class="ghost" id="calendarButton" type="button">Calendar Follow-up</button>
-            <button class="ghost" id="driveButton" type="button">Backup to Drive</button>
-          </div>
-          <pre id="googleLog" aria-live="polite">No Google connector saved yet.</pre>
-        </section>
-      </section>
-    </main>
-
-    <dialog id="leadDialog">
-      <form method="dialog" class="dialog-form" id="dialogForm">
-        <h3 id="dialogTitle">Add Lead</h3>
-        <label>
-          Company
-          <input id="dialogCompany" required />
-        </label>
-        <label>
-          Contact name
-          <input id="dialogContact" />
-        </label>
-        <label>
-          Email
-          <input id="dialogEmail" type="email" />
-        </label>
-        <label>
-          Phone
-          <input id="dialogPhone" />
-        </label>
-        <label>
-          Website
-          <input id="dialogWebsite" />
-        </label>
-        <label>
-          Notes
-          <textarea id="dialogNotes" rows="4"></textarea>
-        </label>
-        <div class="dialog-actions">
-          <button class="ghost" value="cancel" type="submit">Cancel</button>
-          <button id="saveLeadButton" value="default" type="submit">Save Lead</button>
-        </div>
-      </form>
-    </dialog>
-
-    <script src="app.js"></script>
-  </body>
+</body>
 </html>
