@@ -3,62 +3,285 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AdProduction | Pre-Production Excellence</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>Vaishnav KC | Post-Production Portfolio</title>
+    <!-- Tailwind CSS CDN for Glassmorphism Styles -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Lucide Icons for Clean Aesthetics -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Three.js & OrbitControls for Live 3D Model View -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <!-- GLTFLoader to load Blender GLB files -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #050505; color: white; }
-        .premium-gradient { background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%); border: 1px solid #333; }
-        .accent-gold { color: #D4AF37; }
-        .bg-gold { background-color: #D4AF37; }
-        .card-blur { backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.03); }
+        body { background-color: #000000; color: #f4f4f5; font-family: system-ui, -apple-system, sans-serif; overflow-x: hidden; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .glow-bg { absolute: top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-indigo-900/20 rounded-full blur-[120px] pointer-events-none; }
     </style>
 </head>
-<body class="antialiased">
+<body class="selection:bg-indigo-500/30">
 
-    <!-- Navigation -->
-    <nav class="p-8 flex justify-between items-center max-w-7xl mx-auto">
-        <h1 class="text-2xl font-extrabold tracking-tighter">AD<span class="accent-gold">PRO</span></h1>
-        <div class="space-x-8 text-sm font-medium opacity-70">
-            <a href="#" class="hover:opacity-100 transition">Projects</a>
-            <a href="#" class="hover:opacity-100 transition">Workflow</a>
-            <a href="#" class="hover:opacity-100 transition">AI Consultant</a>
-            <button class="bg-white text-black px-6 py-2 rounded-full font-bold">Contact Us</button>
-        </div>
-    </nav>
+    <!-- Ambient Glow Backgrounds -->
+    <div class="fixed top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-indigo-900/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
+    <div class="fixed bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-purple-900/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
 
-    <!-- Hero Section -->
-    <header class="max-w-7xl mx-auto px-8 py-20 text-center">
-        <span class="text-xs uppercase tracking-[0.3em] opacity-50 mb-4 block">Premium Pre-Production Services</span>
-        <h2 class="text-6xl md:text-8xl font-extrabold leading-tight mb-8">Crafting Visual <br><span class="accent-gold">Masterpieces.</span></h2>
-        <p class="max-w-2xl mx-auto text-lg opacity-60 mb-12">SEO Optimized, AI Driven, and Workflow focused. We handle the groundwork while you focus on the vision.</p>
-    </header>
-
-    <!-- Workflow Display (Controlled via Sheet) -->
-    <section class="max-w-7xl mx-auto px-8 py-20">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="premium-gradient p-10 rounded-3xl card-blur">
-                <div class="text-4xl mb-6">🖋️</div>
-                <h3 class="text-xl font-bold mb-4">Smart Scripting</h3>
-                <p class="opacity-50 text-sm leading-relaxed">Automated workflow updates from your Google Sheet for every draft revision.</p>
+    <!-- MAIN INTERACTIVE WRAPPER -->
+    <main class="relative z-10">
+        
+        <!-- HERO SECTION -->
+        <section class="max-w-6xl mx-auto px-6 pt-24 pb-12 grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-indigo-400 font-medium mb-4">
+                    <i data-lucide="disc" class="w-3 h-3 animate-spin text-indigo-500"></i> Available for High-End Creative Works
+                </div>
+                <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-200 to-zinc-500">
+                    Vaishnav KC
+                </h1>
+                <p class="text-lg text-indigo-300 font-medium mt-2">Video Editor & Motion Graphics Designer</p>
+                <p class="mt-4 text-zinc-400 text-sm md:text-base leading-relaxed">
+                    Crafting high-retention post-production pieces, rhythmic pacing, detailed sound engineering, and seamless 3D spatial compositing.
+                </p>
+                <div class="mt-6 flex flex-wrap gap-4">
+                    <button class="px-6 py-3 bg-indigo-600 hover:bg-indigo-500 transition-all rounded-xl font-medium text-sm flex items-center gap-2 shadow-lg shadow-indigo-600/20 cursor-pointer">
+                        Watch Showreel <i data-lucide="video" class="w-4 h-4"></i>
+                    </button>
+                    <button class="px-5 py-3 bg-white/5 hover:bg-white/10 border border-white/10 transition-all rounded-xl font-medium text-sm text-zinc-300 flex items-center gap-2 cursor-pointer">
+                        Download CV <i data-lucide="folder-down" class="w-4 h-4"></i>
+                    </button>
+                </div>
             </div>
-            <div class="premium-gradient p-10 rounded-3xl card-blur">
-                <div class="text-4xl mb-6">🤖</div>
-                <h3 class="text-xl font-bold mb-4">AI Agent Support</h3>
-                <p class="opacity-50 text-sm leading-relaxed">Real-time project updates and client support via integrated AI agents.</p>
-            </div>
-            <div class="premium-gradient p-10 rounded-3xl card-blur border-gold">
-                <div class="text-4xl mb-6">📈</div>
-                <h3 class="text-xl font-bold mb-4">SEO Optimization</h3>
-                <p class="opacity-50 text-sm leading-relaxed">Dynamic keywords and meta-tags controlled directly from your backend sheet.</p>
-            </div>
-        </div>
-    </section>
 
-    <!-- Project Footer -->
-    <footer class="border-t border-white/10 mt-20 p-12 text-center">
-        <p class="text-xs opacity-30">© 2026 AdPro Pre-Production. Managed via Google Sheets Backend.</p>
-    </footer>
+            <!-- THREE.JS 3D CANVAS SHOWCASE -->
+            <div class="w-full h-[400px] glass rounded-2xl p-4 relative overflow-hidden">
+                <div class="absolute top-4 left-4 z-20">
+                    <h3 class="text-sm font-bold text-emerald-400 tracking-wider uppercase">Live 3D Canvas</h3>
+                    <p class="text-xs text-zinc-400">Drag to rotate ninte Blender + Substance 3D work</p>
+                </div>
+                <div id="canvas-3d" class="w-full h-full cursor-grab active:cursor-grabbing"></div>
+            </div>
+        </section>
 
+        <!-- CORE SKILLS MIXERS & WIPE SLIDER INTERACTION -->
+        <section class="max-w-6xl mx-auto px-6 py-12 grid md:grid-cols-2 gap-8">
+            
+            <!-- BEFORE / AFTER COLOR GRADING SLIDER -->
+            <div class="space-y-4">
+                <h2 class="text-xl font-bold text-zinc-200">Interactive Color Engineering</h2>
+                <div id="slider-container" class="relative w-full h-[350px] rounded-2xl overflow-hidden select-none cursor-ew-resize border border-white/10">
+                    <!-- After Image (Color Graded) -->
+                    <div class="absolute inset-0 bg-gradient-to-tr from-indigo-900 to-purple-900 flex items-center justify-center text-white font-bold">
+                        <div class="text-center">
+                            <p class="text-xs uppercase text-emerald-400">After (Color Graded Visual)</p>
+                            <span class="text-2xl">Cinematic Master Profile</span>
+                        </div>
+                    </div>
+                    <!-- Before Image (Raw Log) -->
+                    <div id="before-layer" class="absolute inset-0 bg-zinc-700 flex items-center justify-center text-zinc-300 font-bold overflow-hidden" style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);">
+                        <div class="text-center w-full min-w-[350px]">
+                            <p class="text-xs uppercase text-zinc-400">Before (Raw LOG Footage)</p>
+                            <span class="text-2xl text-zinc-400 opacity-60">Flat S-Log 3 Profile</span>
+                        </div>
+                    </div>
+                    <!-- Slider Separate Line -->
+                    <div id="slider-line" class="absolute top-0 bottom-0 w-0.5 bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)] z-20" style="left: 50%;"></div>
+                </div>
+            </div>
+
+            <!-- AUDIO MIXER CANVAS -->
+            <div class="space-y-4">
+                <h2 class="text-xl font-bold text-zinc-200">Live Post-Audio Engineering</h2>
+                <div class="p-6 bg-zinc-900/80 border border-white/5 backdrop-blur-xl rounded-2xl h-[350px] flex flex-col justify-between">
+                    <div class="flex items-center justify-between">
+                        <div>
+                          <h3 class="text-md font-bold text-white">Audio Mixer Canvas</h3>
+                          <p class="text-xs text-zinc-400">Test my layered Sound Design precision</p>
+                        </div>
+                        <button id="play-mixer" class="p-3 bg-indigo-600 hover:bg-indigo-500 rounded-full transition-colors text-white cursor-pointer">
+                            <i data-lucide="play" class="w-5 h-5" id="play-icon"></i>
+                        </button>
+                    </div>
+
+                    <!-- Hidden Audio Nodes (Replace with ninte custom audio paths if needed) -->
+                    <audio id="audio-vo" src="https://actions.google.com/sounds/v1/ambiences/morning_birds.ogg" loop></audio>
+                    <audio id="audio-sfx" src="https://actions.google.com/sounds/v1/foley/crumple_paper.ogg" loop></audio>
+                    <audio id="audio-bgm" src="https://actions.google.com/sounds/v1/music/ambient_hum_air_conditioner.ogg" loop></audio>
+
+                    <div class="space-y-4">
+                        <!-- Controls for VO -->
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs text-zinc-300 uppercase font-semibold"><span>Dialogue / VO</span></div>
+                            <div class="flex items-center gap-3">
+                                <i data-lucide="volume-x" class="w-4 h-4 text-zinc-500"></i>
+                                <input id="vol-vo" type="range" min="0" max="1" step="0.01" value="0.8" class="w-full accent-indigo-500 h-1 bg-zinc-700 rounded-lg appearance-none cursor-pointer">
+                                <i data-lucide="volume-2" class="w-4 h-4 text-zinc-300"></i>
+                            </div>
+                        </div>
+                        <!-- Controls for SFX -->
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs text-zinc-300 uppercase font-semibold"><span>Sound Effects (SFX)</span></div>
+                            <div class="flex items-center gap-3">
+                                <i data-lucide="volume-x" class="w-4 h-4 text-zinc-500"></i>
+                                <input id="vol-sfx" type="range" min="0" max="1" step="0.01" value="0.5" class="w-full accent-indigo-500 h-1 bg-zinc-700 rounded-lg appearance-none cursor-pointer">
+                                <i data-lucide="volume-2" class="w-4 h-4 text-zinc-300"></i>
+                            </div>
+                        </div>
+                        <!-- Controls for BGM -->
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs text-zinc-300 uppercase font-semibold"><span>Background Music</span></div>
+                            <div class="flex items-center gap-3">
+                                <i data-lucide="volume-x" class="w-4 h-4 text-zinc-500"></i>
+                                <input id="vol-bgm" type="range" min="0" max="1" step="0.01" value="0.2" class="w-full accent-indigo-500 h-1 bg-zinc-700 rounded-lg appearance-none cursor-pointer">
+                                <i data-lucide="volume-2" class="w-4 h-4 text-zinc-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CURATED WORK NICHE GRID -->
+        <section class="max-w-6xl mx-auto px-6 py-16 border-t border-white/5">
+            <h2 class="text-2xl font-bold mb-8 text-zinc-100">Curated Work Niches</h2>
+            <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <div class="group p-6 bg-white/[0.01] hover:bg-white/[0.04] border border-white/5 rounded-2xl transition-all duration-300 hover:-translate-y-1">
+                    <div class="p-3 bg-indigo-500/10 text-indigo-400 rounded-xl w-fit"><i data-lucide="award"></i></div>
+                    <h3 class="text-md font-bold mt-4 text-zinc-200">Commercials & Ads</h3>
+                    <p class="text-xs text-zinc-400 mt-2 leading-relaxed">Product promos, dynamic framing, and cinematic high-end grading profiles.</p>
+                </div>
+                <div class="group p-6 bg-white/[0.01] hover:bg-white/[0.04] border border-white/5 rounded-2xl transition-all duration-300 hover:-translate-y-1">
+                    <div class="p-3 bg-indigo-500/10 text-indigo-400 rounded-xl w-fit"><i data-lucide="zap"></i></div>
+                    <h3 class="text-md font-bold mt-4 text-zinc-200">Social Reels & Shorts</h3>
+                    <p class="text-xs text-zinc-400 mt-2 leading-relaxed">Fast-paced algorithmic hooks, pop-up sub-text layout, and hyper pacing.</p>
+                </div>
+                <div class="group p-6 bg-white/[0.01] hover:bg-white/[0.04] border border-white/5 rounded-2xl transition-all duration-300 hover:-translate-y-1">
+                    <div class="p-3 bg-indigo-500/10 text-indigo-400 rounded-xl w-fit"><i data-lucide="layers"></i></div>
+                    <h3 class="text-md font-bold mt-4 text-zinc-200">Motion & 3D Space</h3>
+                    <p class="text-xs text-zinc-400 mt-2 leading-relaxed">Blender spatial product environment layouts with tracking directly onto videos.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER & LEGAL -->
+        <footer class="max-w-6xl mx-auto px-6 py-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
+            <p>© 2026 Vaishnav KC. Optimized for high performance.</p>
+            <p class="max-w-md text-center sm:text-right italic">
+                All featured projects are personal concepts or shared with explicit permission. NDA-protected works are hidden from direct public view.
+            </p>
+        </footer>
+    </main>
+
+    <!-- SCRIPTS CORE ENGINES INTERACTION LOGIC -->
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // 1. BEFORE AFTER WIPE SLIDER LOGIC
+        const sliderContainer = document.getElementById('slider-container');
+        const beforeLayer = document.getElementById('before-layer');
+        const sliderLine = document.getElementById('slider-line');
+
+        function moveSlider(e) {
+            const rect = sliderContainer.getBoundingClientRect();
+            const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+            if (!clientX) return;
+            const x = clientX - rect.left;
+            let percentage = (x / rect.width) * 100;
+            if (percentage < 0) percentage = 0;
+            if (percentage > 100) percentage = 100;
+
+            beforeLayer.style.clipPath = `polygon(0 0, ${percentage}% 0, ${percentage}% 100%, 0 100%)`;
+            sliderLine.style.left = `${percentage}%`;
+        }
+        sliderContainer.addEventListener('mousemove', moveSlider);
+        sliderContainer.addEventListener('touchmove', (e) => moveSlider(e));
+
+
+        // 2. INTERACTIVE AUDIO MIXER INTERACTION LOGIC
+        const playBtn = document.getElementById('play-mixer');
+        const playIcon = document.getElementById('play-icon');
+        const tracks = {
+            vo: document.getElementById('audio-vo'),
+            sfx: document.getElementById('audio-sfx'),
+            bgm: document.getElementById('audio-bgm')
+        };
+        let isPlaying = false;
+
+        playBtn.addEventListener('click', () => {
+            isPlaying = !isPlaying;
+            if (isPlaying) {
+                Object.values(tracks).forEach(t => t.play());
+                playIcon.setAttribute('data-lucide', 'pause');
+            } else {
+                Object.values(tracks).forEach(t => t.pause());
+                playIcon.setAttribute('data-lucide', 'play');
+            }
+            lucide.createIcons();
+        });
+
+        ['vo', 'sfx', 'bgm'].forEach(id => {
+            const slider = document.getElementById(`vol-${id}`);
+            tracks[id].volume = slider.value;
+            slider.addEventListener('input', (e) => {
+                tracks[id].volume = e.target.value;
+            });
+        });
+
+
+        // 3. THREE.JS 3D ENVIRONMENT SHOWCASE ENGINE
+        const canvasContainer = document.getElementById('canvas-3d');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(45, canvasContainer.clientWidth / canvasContainer.clientHeight, 0.1, 1000);
+        camera.position.set(0, 2, 5);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(canvasContainer.clientWidth, canvasContainer.clientHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        canvasContainer.appendChild(renderer.domElement);
+
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableZoom = false;
+        controls.autoRotate = true;
+        controls.autoRotateSpeed = 0.8;
+
+        // Lighting Matrix
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+        scene.add(ambientLight);
+        const dirLight = new THREE.DirectionalLight(0x6366f1, 1.2); // Indigo color tint light
+        dirLight.position.set(5, 10, 7);
+        scene.add(dirLight);
+
+        // Placeholder Mesh (Sleek Geometric Capsule if GLB path is missing)
+        const geometry = new THREE.TorusKnotGeometry(0.8, 0.25, 100, 16);
+        const material = new THREE.MeshPhysicalMaterial({ 
+            color: 0x4f46e5, roughness: 0.1, metalness: 0.8, clearcoat: 1.0 
+        });
+        const mesh = new THREE.Mesh(geometry, material);
+        scene.add(mesh);
+
+        // OPTIONAL: Blender Custom GLB Loader Logic 
+        // To use ninte own Blender file, uncomment path below and put file path inside inside public root
+        /*
+        const loader = new THREE.GLTFLoader();
+        loader.load('assets/product-3d.glb', function(gltf) {
+            scene.remove(mesh); // Remove fallback
+            scene.add(gltf.scene);
+        });
+        */
+
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+            if (!controls.state == -1) { geometry.rotateY += 0.005; }
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Responsive resize window listener
+        window.addEventListener('resize', () => {
+            camera.aspect = canvasContainer.clientWidth / canvasContainer.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(canvasContainer.clientWidth, canvasContainer.clientHeight);
+        });
+    </script>
 </body>
 </html>
